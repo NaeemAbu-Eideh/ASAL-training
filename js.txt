@@ -1,0 +1,146 @@
+let offset = 0; 
+let limit = 10; 
+let check = false;
+let num = 0;
+let gifNum = 0;
+let isLoading = false;
+let Div = document.createElement("div");
+Div.id = "GIFS";
+let showDiv = document.getElementById('gifs');
+let gifs = [];
+
+let div2 = document.createElement('div');
+div2.id = "searchName";
+Div.appendChild(div2);
+
+search = document.createElement('input');
+search.type = "text";
+search.id="searchGifs";
+search.placeholder="   Search";
+div2.appendChild(search);
+
+arrow = document.createElement('div');
+arrow.id = 'arrow';
+let all = document.getElementById('all');
+all.appendChild(arrow);
+
+async function fetchData() {
+    try {
+        isLoading = true;
+        const response = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=oP73qkuaWZ6xB54SbHLWoNjVKVz25gab&limit=${limit}&offset=${offset}`);
+        const data = await response.json();
+        gifs = data.data;
+        offset += gifs.length;
+        isLoading = false;
+    } catch (error) {
+        console.error('Error fetching GIFs:', error);
+        isLoading = false;
+    }
+}
+
+async function fetchMoreGIFs() {
+    if (isLoading) return;
+    isLoading = true;
+    try {
+        const response = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=oP73qkuaWZ6xB54SbHLWoNjVKVz25gab&limit=${limit}&offset=${offset}`);
+        const data = await response.json();
+        const newGIFs = data.data;
+        gifs.push(newGIFs);
+        offset += newGIFs.length; 
+        insertToDiv(newGIFs);
+        isLoading = false;
+    } catch (error) {
+        console.error('Error fetching more GIFs:', error);
+        isLoading = false;
+    }
+}
+
+fetchData();
+
+function insertToDiv(array) {
+    for (let i = 0; i < array.length; i++) {
+        const src = document.createElement('img');
+        src.src = `${array[i].images.downsized.url}`;
+        src.title = `${array[i].username}`;
+        src.classList.add("gif");
+        src.style.width = "30vw";
+        src.style.height = "30vh";
+        Div.appendChild(src);
+    }
+}
+
+async function showGifs() {
+    if (check == false) {
+        await fetchData();
+        if (gifNum == 0) {
+            insertToDiv(gifs);
+            gifNum++;
+        }
+        if (num == 0) {
+            showDiv.appendChild(Div);
+            arrow.style.display = "block";
+            num++;
+        } else {
+            Div.style.display = "block";
+            arrow.style.display = "block";
+        }
+        check = true;
+    }
+}
+
+function hiddenDiv() {
+    function handleClickOutside(event) {
+        let clicked = event.target;
+        if (clicked.id == 'i1' || clicked.id == 'i2' || clicked.id == 'i3'  || clicked.classList.contains("gif") || clicked.id == "searchName" || clicked.id == "searchGifs") {} else {
+            if (check == true) {
+                Div.style.display = "none";
+                arrow.style.display = "none";
+                check = false;
+            }
+        }
+    }
+
+    document.body.addEventListener('click', handleClickOutside);
+}
+
+Div.addEventListener('scroll', function() {
+    if (Div.scrollTop + Div.clientHeight >= Div.scrollHeight) {
+        fetchMoreGIFs();
+    }
+});
+
+search.addEventListener('input', async function() {
+    const searchTerm = this.value.trim();
+    if (searchTerm !== '') {
+        // Fetch GIFs based on the search term
+        await fetchGIFsBySearch(searchTerm);
+    }
+});
+
+async function fetchGIFsBySearch(searchTerm) {
+    try {
+        isLoading = true;
+        const response = await fetch(`https://api.giphy.com/v1/gifs/search?q=${encodeURIComponent(searchTerm)}&api_key=oP73qkuaWZ6xB54SbHLWoNjVKVz25gab&limit=${limit}&offset=${offset}`);
+        const data = await response.json();
+        gifs = data.data;
+        clearDiv(Div);
+        insertToDiv(gifs);
+        isLoading = false;
+    } catch (error) {
+        console.error('Error fetching GIFs:', error);
+        isLoading = false;
+    }
+}
+
+function clearDiv(div) {
+    // Remove all child nodes from the div except for certain elements
+    const children = div.children;
+    for (let i = children.length - 1; i >= 0; i--) {
+        const child = children[i];
+        if (child.id !== 'searchName') {
+            div.removeChild(child);
+        }
+    }
+}
+
+
