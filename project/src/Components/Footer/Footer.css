@@ -1,0 +1,12 @@
+.footer{
+   height: 660px;
+   background-color: #252525;
+}
+
+.footerHr{
+   border-color: #313131;
+   position: relative;
+   bottom: 515px;
+   margin-left: 250px;
+   margin-right: 240px;
+}

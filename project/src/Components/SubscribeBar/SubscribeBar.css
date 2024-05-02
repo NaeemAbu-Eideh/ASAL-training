@@ -1,0 +1,53 @@
+.subscribeBar{
+    height: 233px;
+    background-color: #EBEBEB;
+}
+
+.newSletter{
+    position: absolute;
+    top: 2083px;
+    left: 970px;
+    color: #0E0E0E;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.cardAndGifts{
+    position: absolute;
+    top: 2140px;
+    left: 880px;
+    font-size: 17px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #A9A9A9;
+}
+
+.emailAddress{
+    position: absolute;
+    top: 2220px;
+    left: 613px;
+    width: 653px;
+    height: 48px;
+    border: 1px solid white;
+    padding-left: 22px;
+    padding-right: 22px;
+}
+
+::placeholder{
+    color: #D8D8D8;
+    font-size: 17px;
+    
+}
+
+.subscribeButton{
+    position: absolute;
+    top: 2220px;
+    left: 1330px;
+    width: 210px;
+    height: 53px;
+    color: white;
+    background-color: #AB1D2B;
+    font-size: 20px;
+}

@@ -1,0 +1,11 @@
+.topFooter{
+    height: 135px;
+    background-color: blueviolet;
+}
+
+.topFooterInfo{
+    background-color: aqua;
+    display: inline-block;
+    position: absolute;
+    top: 2340px;
+}

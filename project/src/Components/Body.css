@@ -1,0 +1,13 @@
+.pageBody{
+    border: 1px solid black;
+    border-collapse: collapse;
+    position: absolute;
+    top: 126px;
+    left: 0;
+    width: 100%;
+}
+
+.pageBodySections{
+    border: 1px solid black;
+    width: 100%;
+}
