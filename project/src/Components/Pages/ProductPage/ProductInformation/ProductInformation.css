@@ -1,0 +1,43 @@
+.productInformation{
+    width: 504px;
+    height: 304px;
+    position: absolute;
+    left: 1110px;
+    top: 51px;
+}
+
+.productBath{
+    font-size: 17px;
+    font-weight: bold;
+    color: #C0C0C0;
+    position: relative;
+    top: 10px;
+}
+
+.productPrice{
+    color: #B4263D;
+}
+
+.productMoreInformation{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 17px;
+    
+}
+
+.buttons{
+    position: relative;
+}
+
+.arrowLeftRight{
+    background-color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    margin-top: 12px;
+    box-shadow: 4px 4px 8px 3px #E7E7E7;
+}
+
+.leftRight{
+    font-size: 20px;
+}
