@@ -1,0 +1,21 @@
+.productInformationPage{
+    height: 1109px;
+    width: 100%;
+    position: relative;
+    bottom: 67px;
+    
+}
+
+.productTableSections{
+    width: 100%;
+    padding: 50px;
+    
+}
+
+#thirdImageSection{
+    padding-left: 1000px;
+}
+
+#fourthImageSection{
+   padding-top: 100px;
+}
